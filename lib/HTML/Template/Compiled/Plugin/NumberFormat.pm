@@ -113,7 +113,6 @@ sub __test_version {
     return $v eq $v_test ? 1 : 0;
 }
 
-
 1;
 
 __END__
@@ -184,6 +183,14 @@ calls $number_format->format_bytes
 calls $number_format->format_price
 
 =back
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2012 by Tina Mueller
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.3 or,
+at your option, any later version of Perl 5 you may have available.
 
 =cut
 
