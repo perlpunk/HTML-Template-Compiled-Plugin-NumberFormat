@@ -97,7 +97,7 @@ my $version_pod = <<'=cut';
 
 =head1 NAME
 
-HTML::Template::Compiled::Plugin::Nuber::Format - Number::Forat plugin for HTML::Template::Compiled
+HTML::Template::Compiled::Plugin::Nuber::Format - Number::Format plugin for HTML::Template::Compiled
 
 =head1 VERSION
 
