@@ -1,4 +1,6 @@
 Revision history for Perl module HTML::Template::Compiled::Plugin::Number::Format.
 
-0.01_001
+0.01_002
+
+0.01_001 Sat Nov 17 20:11:03 CET 2012
 - Moved out of HTML-Template-Compiled distribution
