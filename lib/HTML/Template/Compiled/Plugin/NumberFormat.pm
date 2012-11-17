@@ -64,32 +64,44 @@ sub _compile_format_number {
     my $type = $attr->{TYPE} || 'number';
     my $method = 'format_number';
     my @args;
+    my $precision = $attr->{PRECISION};
     if (lc $type eq 'number') {
         $method = 'format_number';
-        my $precision = $attr->{PRECISION};
         my $trailing_zeroes = $attr->{TRAILING_ZEROES};
         for ($precision, $trailing_zeroes) {
-            if (defined $_ and length $_) {
-                $_ =~ tr/0-9//cd;
-                $_ ||= 0;
-            }
-            else {
-                $_ = 'undef';
-            }
+            _sanitize($_);
             push @args, $_;
         }
     }
     elsif (lc $type eq 'price') {
+        for ($precision) {
+            _sanitize($_);
+            push @args, $_;
+        }
         $method = 'format_price';
     }
     elsif (lc $type eq 'bytes') {
         $method = 'format_bytes';
+        for ($precision) {
+            _sanitize($_);
+            push @args, ("'precision'" => $_);
+        }
     }
     local $" = ',';
     my $expression = <<"EOM";
     $OUT \$t->get_plugin('HTML::Template::Compiled::Plugin::NumberFormat')->formatter->$method($var, @args);
 EOM
     return $expression;
+}
+sub _sanitize {
+    if (defined $_[0] and length $_[0]) {
+        $_[0] =~ tr/0-9//cd;
+        $_[0] ||= 0;
+    }
+    else {
+        $_[0] = 'undef';
+    }
+
 }
 
 my $version_pod = <<'=cut';

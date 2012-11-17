@@ -26,6 +26,8 @@ my @nf = ($nf1, $nf2);
 my $t_plug = <<"EOM";
 <%= .nums.big escape=format_number %>
 <%format_number .nums.big_dec precision=3 %>
+<%format_number .nums.big_dec precision=3 type=price %>
+<%format_number .nums.big_dec precision=3 type=bytes %>
 <%= .nums.price escape=format_price %>
 <%= .nums.bytes1 escape=format_bytes %>
 <%= .nums.bytes2 escape=format_bytes %>
@@ -50,6 +52,8 @@ my $plug = HTML::Template::Compiled::Plugin::NumberFormat->new({
 my $t = <<"EOM";
 <%= expr=".nfx.format_number(.nums{'big'})" %>
 <%= expr=".nfx.format_number(.nums{'big_dec'}, 3)" %>
+<%= expr=".nfx.format_price(.nums{'big_dec'}, 3)" %>
+<%= expr=".nfx.format_bytes(.nums{'big_dec'}, 'precision', 3)" %>
 <%= expr=".nfx.format_price(.nums{'price'})" %>
 <%= expr=".nfx.format_bytes(.nums{'bytes1'})" %>
 <%= expr=".nfx.format_bytes(.nums{'bytes2'})" %>
@@ -88,6 +92,8 @@ sub test_nf {
         $exp .= <<"EOM";
 @{[ $nf->format_number($p{nums}->{big}) ]}
 @{[ $nf->format_number($p{nums}->{big_dec}, 3) ]}
+@{[ $nf->format_price($p{nums}->{big_dec}, 3) ]}
+@{[ $nf->format_bytes($p{nums}->{big_dec}, precision => 3) ]}
 @{[ $nf->format_price($p{nums}->{price}) ]}
 @{[ $nf->format_bytes($p{nums}->{bytes1}) ]}
 @{[ $nf->format_bytes($p{nums}->{bytes2}) ]}
