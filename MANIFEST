@@ -1,3 +1,4 @@
+Changes
 Build.PL
 lib/HTML/Template/Compiled/Plugin/NumberFormat.pm
 MANIFEST			This list of files
@@ -5,7 +6,8 @@ README.md
 t/01_version.t
 t/02_pod.t
 t/03_pod_cover.t
-t/04_nuber_format.t
+t/04_number_format.t
+examples/number_format.pl
 Makefile.PL
 README
 META.yml
